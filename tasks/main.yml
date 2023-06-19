@@ -505,7 +505,7 @@
         - name: Change the password of sa user  # noqa command-instead-of-shell
           shell: >-
             MSSQL_SA_PASSWORD={{ mssql_password | quote }}
-            {{ __mssql_conf_cli }} set-sa-password
+            {{ __mssql_conf_cli }} --noprompt set-sa-password
           when: __mssql_password_query is failed
           notify: Restart the mssql-server service
           register: __mssql_set_ha_password
@@ -578,7 +578,7 @@
     - name: Change the edition of MSSQL
       block:
         - name: Change the edition of MSSQL
-          command: "{{ __mssql_conf_cli }} set-edition"
+          command: "{{ __mssql_conf_cli }} --noprompt set-edition"
           environment:
             MSSQL_PID: "{{ mssql_edition }}"
           register: __mssql_conf_set_edition
