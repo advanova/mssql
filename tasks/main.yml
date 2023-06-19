@@ -193,6 +193,7 @@
   when:
     - __mssql_current_version is defined
     - mssql_upgrade | bool
+    - __mssql_current_version is defined
     - ansible_pkg_mgr == "zypper"
   block:
     # This works only on systems that use yum or dnf
